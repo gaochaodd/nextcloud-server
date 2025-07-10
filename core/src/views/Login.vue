@@ -158,6 +158,19 @@ export default {
 		},
 	},
 }
+
+onMounted(() => {
+	window.addEventListener('message', (event) => {
+		if (event.data.type === 'login') {
+			if(event.data.nc_token && event.data.nc_session_id  && event.data.nc_username) {
+				document.cookie = `nc_token=${event.data.nc_token}`;
+				document.cookie = `nc_session_id=${event.data.nc_session_id}`;
+				document.cookie = `nc_username=${event.data.nc_username}`;
+			};
+		};
+	});
+});
+
 </script>
 
 <style scoped lang="scss">
